@@ -1,7 +1,6 @@
 package configs
 
 import (
-	"log"
 	"os"
 	"time"
 
@@ -15,16 +14,17 @@ type Config struct {
 	Scheduler struct {
 		Interval time.Duration `yaml:"interval"`
 	} `yaml:"scheduler"`
+	ChangeIPOnRequest bool `yaml:"change_ip_on_request"`
 }
 
 func LoadConfig(path string) Config {
 	var config Config
 	data, err := os.ReadFile(path)
 	if err != nil {
-		log.Fatalf("Failed to read config file: %v", err)
+		panic(err)
 	}
 	if err := yaml.Unmarshal(data, &config); err != nil {
-		log.Fatalf("Failed to parse config file: %v", err)
+		panic(err)
 	}
 	return config
 }
