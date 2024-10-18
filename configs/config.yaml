@@ -1,0 +1,4 @@
+tor:
+  control_port: "127.0.0.1:9051" 
+scheduler:
+  interval: 30s
